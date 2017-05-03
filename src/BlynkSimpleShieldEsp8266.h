@@ -128,6 +128,10 @@ public:
     bool connectWiFi(const char* ssid, const char* pass)
     {
         ::delay(500);
+        if(!wifi->eAT()){
+			BLYNK_LOG1(BLYNK_F("ESP is not responding"));
+            return false;
+		}
         BLYNK_LOG2(BLYNK_F("Connecting to "), ssid);
         /*if (!wifi->restart()) {
             BLYNK_LOG1(BLYNK_F("Failed to restart"));
